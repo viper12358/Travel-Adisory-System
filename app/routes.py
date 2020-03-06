@@ -12,4 +12,5 @@ def index():
 @app.route('/')
 @app.route('/login.html')
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    return render_template('login.html', form=form)
