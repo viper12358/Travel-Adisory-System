@@ -1,7 +1,8 @@
 
 # Travel Adisory System
  Flask,Python,SENG
-Make sure to install:
+
+### Required libraries:
 - flask
 - flask_wtf
 
