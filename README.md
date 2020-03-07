@@ -1,3 +1,4 @@
+
 # Travel Adisory System
  Flask,Python,SENG
 Make sure to install:
@@ -5,5 +6,7 @@ Make sure to install:
 - flask_wtf
 
 ### How to run:
-```FLASK_APP=tas.py
-flask run```
+```bash
+FLASK_APP=tas.py
+flask run
+```
