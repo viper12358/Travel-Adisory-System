@@ -1,7 +1,8 @@
 # Travel Adisory System
  Flask,Python,SENG
 Make sure to install:
-Flask
+- flask
+- flask_wtf
 How to run:
 FLASK_APP=tas.py
 flask run
