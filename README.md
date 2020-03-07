@@ -6,7 +6,7 @@ Make sure to install:
 - flask_wtf
 
 ### How to run:
-```bash
+```
 FLASK_APP=tas.py
 flask run
 ```
