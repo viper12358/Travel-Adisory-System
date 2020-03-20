@@ -45,7 +45,7 @@
               <i class="ni ni-ui-04 d-lg-none"></i>
               <span class="nav-link-inner--text">Advisories</span>
             </a>
-            
+
             <li class="nav-item dropdown"></a>
               {% if current_user.is_anonymous %}
               <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button" onclick="window.location.href = './login.html'">
@@ -93,17 +93,19 @@
               <div class="col-lg-6 text-center">
                 <img src="./static/img/Logo.png" style="width: 500px;" class="img-fluid">
                 <p class="lead text-white">Comprehensive risk analysis of destination countries.</p>
-                
+
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
-                <ul>
                 {% for message in messages %}
-                <p class="lead text-white">{{ message }}</p>
-                  {% endfor %}
+                <ul>
+                  <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                  </div>
                 </ul>
+                {% endfor %}
                 {% endif %}
                 {% endwith %}
-                
+
                   {% block content %}
                   {% endblock %}
 
