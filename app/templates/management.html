@@ -45,34 +45,20 @@
               <i class="ni ni-ui-04 d-lg-none"></i>
               <span class="nav-link-inner--text">Advisories</span>
             </a>
-            
-            <li class="nav-item dropdown"></a>
-              {% if current_user.is_anonymous %}
-              <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button" onclick="window.location.href = './login.html'">
-                <i class="ni ni-collection d-lg-none"></i>
-                    <span class="nav-link-inner--text">Login</span>
-              </a>
-              {% elif current_user.is_authenticated %}
-              <h1>Hi, {{ current_user.username }}!</h1>
-              <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button" onclick="window.location.href = './logout'">
-                <i class="ni ni-collection d-lg-none"></i>
-                    <span class="nav-link-inner--text">Logout</span>
-                  </a>
-
-                  <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button" onclick="window.location.href = './management'">
-                    <i class="ni ni-collection d-lg-none"></i>
-                        <span class="nav-link-inner--text">Management</span>
-                      </a>
-              {% endif %}
-            </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
+              <i class="ni ni-collection d-lg-none"></i>
+              <span class="nav-link-inner--text">Login</span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- End Navbar -->
-  <div class="wrapper" style="overflow:hidden;">
+  <div class="wrapper">
     <div class="section section-hero section-shaped">
-      <div class="shape  shape-primary" style="height: 60%;">
+      <div class="shape shape-style-1 shape-primary">
         <span class="span-150"></span>
         <span class="span-50"></span>
         <span class="span-50"></span>
@@ -85,43 +71,87 @@
         <span class="span-100"></span>
       </div>
 
-
+      
       <div class="page-header">
         <div class="container shape-container d-flex align-items-center py-lg">
           <div class="col px-0">
             <div class="row align-items-center justify-content-center">
               <div class="col-lg-6 text-center">
                 <img src="./static/img/Logo.png" style="width: 500px;" class="img-fluid">
-                <p class="lead text-white">Comprehensive risk analysis of destination countries.</p>
-                
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <ul>
-                {% for message in messages %}
-                <p class="lead text-white">{{ message }}</p>
-                  {% endfor %}
-                </ul>
-                {% endif %}
-                {% endwith %}
-                
-                  {% block content %}
-                  {% endblock %}
-
-                          </div>
-                        </h2>
-                        </div>
-
+                <p class="lead text-white">Managing: <b>{{ current_user.username }}</b></p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+    <div class="section section-components pb-0" id="section-components">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <h2 class="mb-5">
+              <span>Country Management</span><p>Use this page to manage your country's avisory details</p>
+            </h2>
+
+            <div>
+                <h3>Short Description</h3>
+                <form>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write text here ..."></textarea>
+              </form>
+
+              <br>
+
+              <h3>Risk Level</h3>
+              <div class="custom-control custom-radio mb-3">
+                <input name="custom-radio-1" class="custom-control-input" id="customRadio1" type="radio">
+                <label class="custom-control-label" for="customRadio1">Low</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input name="custom-radio-1" class="custom-control-input" id="customRadio2" checked="" type="radio">
+                <label class="custom-control-label" for="customRadio2">Medium</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input name="custom-radio-1" class="custom-control-input" id="customRadio3" checked="" type="radio">
+                <label class="custom-control-label" for="customRadio3">High</label>
+              </div>
+            </div>
+
+            <br>
+
+            <h3>Health Risks</h3>
+            <form>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write text here ..."></textarea>
+            </form>
+
+            <br>
+
+            <h3>Environmental Risks</h3>
+            <form>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write text here ..."></textarea>
+            </form>
+
+            <br>
+
+            <h3>Laws and Culture</h3>
+            <form>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write text here ..."></textarea>
+            </form>
+
+            <br><br>
+
+            <button type="button" class="btn btn-primary">Submit Changes</button>
+            <br><br><br>
 
 
 
   <!--   JS Files   -->
   <script src="./static/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="./static/js/core/popper.min.js" type="text/javascrip`t"></script>
+  <script src="./static/js/core/popper.min.js" type="text/javascript"></script>
   <script src="./static/js/core/bootstrap.min.js" type="text/javascript"></script>
   <script src="./static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <script src="./static/js/plugins/bootstrap-switch.js"></script>
