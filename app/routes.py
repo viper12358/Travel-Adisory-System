@@ -4,24 +4,23 @@ from app.forms import LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 
+def init_db():
+    User.query.delete()
+    china = User(username='China', email='China@gov.com')
+    china.set_password('GreatChink')
+    db.session.add(china)
+    canada = User(username='Canada', email='Canada@gov.com')
+    canada.set_password('HockeyMapleLeaf')
+    db.session.add(canada)
+    db.session.commit()
+
+init_db()
 
 # index field
 @app.route('/')
 @app.route('/index.html')
 def index():
-    User.query.delete()
-
-    china = User(username='China', email='China@gov.com')
-    china.set_password('GreatChink')
-    db.session.add(china)
-
-    canada = User(username='Canada', email='Canada@gov.com')
-    canada.set_password('HockeyMapleLeaf')
-    db.session.add(canada)
-
-    db.session.commit()
     return render_template('index.html')
-
 
 
 # login field
@@ -31,7 +30,7 @@ def login():
     # basically if you are already logged in, you are automatically stay in index
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-    
+
     form = LoginForm()
 
     if form.validate_on_submit():

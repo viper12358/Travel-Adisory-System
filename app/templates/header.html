@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="./static/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./static/img/favicon.png">
+  <title>
+    Travel Advisory System
+  </title>
+  <!--Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="./static/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="./static/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="./static/css/font-awesome.css" rel="stylesheet" />
+  <link href="./static/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="./static/css/argon-design-system.css?v=1.2.0" rel="stylesheet" />
+  <style>
+    .center {
+      margin: auto;
+      width: 40%;
+      border: 3px solid #73AD21;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body class="index-page">
+  <!-- Navbar -->
+  <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
+    <div class="container">
+      <a class="navbar-brand mr-lg-5" href="./index.html">
+        <img src="./static/img/LogoSmall.png" style="height: 50px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbar_global">
+        <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
+              <i class="ni ni-ui-04 d-lg-none"></i>
+              <span class="nav-link-inner--text">Advisories</span>
+            </a>
+          </li>
+              {% if current_user.is_anonymous %}
+              <li class="nav-item dropdown">
+              <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button" onclick="window.location.href = './login.html'">
+                <i class="ni ni-collection d-lg-none"></i>
+                    <span class="nav-link-inner--text">Login</span>
+              </a>
+            </li>
+              {% elif current_user.is_authenticated %}
+
+              <li class="nav-item dropdown">
+              <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button" onclick="window.location.href = './management'">
+                  <i class="ni ni-collection d-lg-none"></i>
+                      <span class="nav-link-inner--text">Management</span>
+                    </a>
+              </li>
+
+              <li class="nav-item dropdown">
+              <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button" onclick="window.location.href = './logout'">
+                <i class="ni ni-collection d-lg-none"></i>
+                    <span class="nav-link-inner--text">Logout</span>
+                  </a>
+
+                </li>
+              {% endif %}
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <div class="wrapper">
+    <div class="section section-hero section-shaped">
+      <div class="shape shape-style-1 shape-primary">
+        <span class="span-150"></span>
+        <span class="span-50"></span>
+        <span class="span-50"></span>
+        <span class="span-75"></span>
+        <span class="span-100"></span>
+        <span class="span-75"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+      </div>
+      <div class="page-header">
+        <div class="container shape-container d-flex align-items-center py-lg">
+          <div class="col px-0">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-lg-6 text-center">
+                <img src="./static/img/Logo.png" style="width: 500px;" class="img-fluid">
+                <p class="lead text-white">Comprehensive risk analysis of destination countries.</p>
+                {% if current_user.is_authenticated %}
+                <div class="alert alert-success" role="alert">
+                  You are logged in as <b>{{ current_user.username }}</b>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+  <!--   JS Files   -->
+  <script src="./static/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./static/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./static/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="./static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="./static/js/plugins/bootstrap-switch.js"></script>
+  <script src="./static/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <script src="./static/js/plugins/moment.min.js"></script>
+  <script src="./static/js/plugins/datetimepicker.js" type="text/javascript"></script>
+  <script src="./static/js/plugins/bootstrap-datepicker.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <script src="./static/js/argon-design-system.min.js?v=1.2.0" type="text/javascript"></script>
+</body>
+
+</html>
