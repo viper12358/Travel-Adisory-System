@@ -7,7 +7,7 @@ from app.models import User
 def init_db():
     User.query.delete()
     china = User(username='China', email='China@gov.com')
-    china.set_password('GreatChink')
+    china.set_password('GreatCheng')
     db.session.add(china)
     canada = User(username='Canada', email='Canada@gov.com')
     canada.set_password('HockeyMapleLeaf')
