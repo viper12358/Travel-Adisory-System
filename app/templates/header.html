@@ -114,15 +114,9 @@
       </div>
     </div>
 
-    {% autoescape false %}
-    {{ disqus_dev() }}
-    {{ disqus_show_comments("comments_name") }}
-    {% endautoescape %}
     {% block content %}
     {% endblock %}
 
-  
-    
   <!--   JS Files   -->
   <script src="./static/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="./static/js/core/popper.min.js" type="text/javascript"></script>
