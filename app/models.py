@@ -26,6 +26,26 @@ class User(UserMixin, db.Model):
         else:
             return False
 
+class Country(db.Model):
+    id = db.Column(db.String(64), primary_key=True)
+    description = db.Column(db.String(2048))
+    risks = db.Column(db.String(2048))
+    environment = db.Column(db.String(2048))
+    laws = db.Column(db.String(2048))
+
+    def __repr__(self):
+        return '<Country {}>'.format(self.country)
+
+    def update_details(self, data):
+        self.description = data['description']
+        self.risks = data['risks']
+        self.environment = data['environment']
+        self.laws = data['laws']
+
+
 @login.user_loader
 def load_user(id):
     return User.query.get(id)
+
+def load_country(id):
+    return Country.query.get(id)
