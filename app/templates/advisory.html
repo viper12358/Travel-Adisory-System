@@ -1,0 +1,80 @@
+{% extends "header.html" %}
+
+{% block content %}
+<div class="section section-components pb-0" id="section-components">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <h2 class="mb-5">
+          <span>Advisory: <b>{{ country }}</b></span>
+
+          {% if riskLevel == 0 %}
+            <span><h4><span class="badge badge-pill badge-success">Low Risk</span></h4></span>
+          {% endif %}
+
+          {% if riskLevel == 1 %}
+            <span><h4><span class="badge badge-pill badge-warning">Medium Risk</span></h4></span>
+          {% endif %}
+
+          {% if riskLevel == 2 %}
+            <span><h4><span class="badge badge-pill badge-danger">High Risk</span></h4></span>
+          {% endif %}
+
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success" role="alert">
+              {{ message }}
+              </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </h2>
+
+        <hr>
+
+        <div class="nav-wrapper">
+          <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-align-left-2 mr-2"></i>Short Description</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-ambulance mr-2"></i>Health Risks</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-tree mr-2"></i>Environmental Risks</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-balance-scale mr-2"></i>Laws and Culture</a>
+              </li>
+          </ul>
+      </div>
+      <div class="card shadow">
+          <div class="card-body">
+              <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+                      <h3 style="white-space: pre-wrap;" class="description">{{ description }}</h3>
+                  </div>
+                  <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                      <h3 style="white-space: pre-wrap;" class="description">{{ risks }}</h3>
+                  </div>
+                  <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+                      <h3 style="white-space: pre-wrap;" class="description">{{ environment }}</h3>
+                  </div>
+                  <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                      <h3 style="white-space: pre-wrap;" class="description">{{ laws }}</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <br><br>
+
+      <a href="/"><p>Return to home page <i class="fa fa-arrow-right mr-2"></i></a>
+
+      <br><br><br>
+
+      {% include "comments.html" %}
+
+      <br><br><br><br><br><br>
+{% endblock %}

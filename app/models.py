@@ -32,6 +32,7 @@ class Country(db.Model):
     risks = db.Column(db.String(2048))
     environment = db.Column(db.String(2048))
     laws = db.Column(db.String(2048))
+    riskLevel = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Country {}>'.format(self.country)
@@ -41,6 +42,7 @@ class Country(db.Model):
         self.risks = data['risks']
         self.environment = data['environment']
         self.laws = data['laws']
+        self.riskLevel = data['riskLevel']
 
 
 @login.user_loader

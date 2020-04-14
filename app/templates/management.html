@@ -10,7 +10,7 @@
           {% with messages = get_flashed_messages() %}
             {% if messages %}
               {% for message in messages %}
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-primary" role="alert">
               {{ message }}
               </div>
               {% endfor %}
@@ -25,20 +25,32 @@
 
           <br>
 
-          <!--<h3>Risk Level</h3>
+          <h3>Risk Level</h3>
           <div class="custom-control custom-radio mb-3">
-            <input name="custom-radio-1" class="custom-control-input" id="customRadio1" type="radio">
-            <label class="custom-control-label" for="customRadio1">Low</label>
+            {% if riskLevel == 0 %}
+              <input name="risklevel" class="custom-control-input" id="low" value="0" checked="" type="radio">
+            {% else %}
+              <input name="risklevel" class="custom-control-input" id="low" value="0" type="radio">
+            {% endif %}
+          <label class="custom-control-label" for="low">Low</label>
           </div>
-          <div class="custom-control custom-radio mb-3">
-            <input name="custom-radio-1" class="custom-control-input" id="customRadio2" checked="" type="radio">
-            <label class="custom-control-label" for="customRadio2">Medium</label>
-          </div>
-          <div class="custom-control custom-radio mb-3">
-            <input name="custom-radio-1" class="custom-control-input" id="customRadio3" checked="" type="radio">
-            <label class="custom-control-label" for="customRadio3">High</label>
-          </div>
-        </div>-->
+        <div class="custom-control custom-radio mb-3">
+          {% if riskLevel == 1 %}
+            <input name="risklevel" class="custom-control-input" id="medium" value="1" checked="" type="radio">
+          {% else %}
+            <input name="risklevel" class="custom-control-input" id="medium" value="1" type="radio">
+          {% endif %}
+          <label class="custom-control-label" for="medium">Medium</label>
+        </div>
+        <div class="custom-control custom-radio mb-3">
+          {% if riskLevel == 2 %}
+            <input name="risklevel" class="custom-control-input" id="high" value="2" checked="" type="radio">
+          {% else %}
+            <input name="risklevel" class="custom-control-input" id="high" value="2" type="radio">
+          {% endif %}
+        <label class="custom-control-label" for="high">High</label>
+        </div>
+        </div>
 
         <br>
 

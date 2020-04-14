@@ -18,10 +18,13 @@ init_db()
 
 # index field
 @app.route('/')
-@app.route('/index.html')
 def index():
     return render_template('index.html')
 
+# Redirect index.html to /
+@app.route('/index.html')
+def projects():
+    return redirect("/", code=302)
 
 # login field
 @app.route('/')
@@ -53,39 +56,79 @@ def logout():
     # return render_template('logout.html')
 
 @app.route('/')
+@app.route("/advisory", methods=['GET'])
+def advisory():
+
+    country = request.args.get('country')
+
+    if not country:
+        if current_user.is_anonymous:
+            country = "China"
+        else:
+            country = current_user.username
+
+    countryObject = load_country(country)
+
+    if not countryObject:
+        flash("No such country: %s" % country)
+        print("No such country: %s" % country)
+
+    return render_template(
+        'advisory.html',
+        country=country,
+        description=countryObject.description,
+        risks=countryObject.risks,
+        environment=countryObject.environment,
+        laws=countryObject.laws,
+        riskLevel=countryObject.riskLevel
+    )
+
+@app.route('/')
 @app.route("/management", methods=['GET','POST'])
 @login_required
 def management():
 
+    countryName = current_user.username
     countryObject = load_country(current_user.username)
+
+    if not countryObject:
+        countryObject = Country(
+            id=countryName,
+            description="Default description",
+            risks="Enter risks here",
+            environment="Enter environment here",
+            laws="Enter laws here",
+            riskLevel=0
+        )
+        db.session.add(countryObject)
+        db.session.commit()
 
     if request.method == 'POST':
         form = request.form
+        print("form: %s" % form)
         data = {}
         data['description'] = form.get("description")
         data['risks'] = form.get("risks")
         data['environment'] = form.get("environment")
         data['laws'] = form.get("laws")
+        data['riskLevel'] = int(form.get("risklevel"))
 
-        countryName = current_user.username
         print(data, countryName)
-
-        if not countryObject:
-            print("Country does not exist")
-            countryObject = Country(id=countryName, description=data['description'], risks=data['risks'], environment=data['environment'], laws=data['laws'])
-            db.session.add(countryObject)
-        else:
-            print("Exists")
 
         countryObject.update_details(data)
         db.session.commit()
 
         flash('Country updated successfully')
 
-        print("FUCK:::: %s" % countryObject.description)
-
     # user = User.query.filter_by(username=username).first_or_404()
 
 
 
-    return render_template('management.html', description=countryObject.description, risks=countryObject.risks, environment=countryObject.environment, laws=countryObject.laws)
+    return render_template(
+        'management.html',
+        description=countryObject.description,
+        risks=countryObject.risks,
+        environment=countryObject.environment,
+        laws=countryObject.laws,
+        riskLevel=countryObject.riskLevel
+    )
