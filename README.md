@@ -1,6 +1,6 @@
 
 # Travel Adisory System
- Flask,Python,SENG
+ Flask,Python,HTML,CSS
 
 ### Required libraries:
 - flask
