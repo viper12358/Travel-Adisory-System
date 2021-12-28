@@ -1,6 +1,7 @@
 
 # Travel Adisory System
  Flask,Python,HTML,CSS
+Website to track which of your holiday destination is safe enough
 
 ### Required libraries:
 - flask
